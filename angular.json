@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ng-tui-viewer": {
+      "root": "projects/ng-tui-viewer",
+      "sourceRoot": "projects/ng-tui-viewer/src",
+      "projectType": "library",
+      "prefix": "tui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ng-tui-viewer/tsconfig.lib.json",
+            "project": "projects/ng-tui-viewer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-tui-viewer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-tui-viewer/src/test.ts",
+            "tsConfig": "projects/ng-tui-viewer/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-tui-viewer/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-tui-viewer/tsconfig.lib.json",
+              "projects/ng-tui-viewer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ng-tui-viewer"
+}
